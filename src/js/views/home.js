@@ -7,22 +7,12 @@ export const Home = () => {
 
 	const { store, actions } = useContext(Context);
 
-	useEffect(() => {
+	useEffect(async () => {
 		actions.getPeople();
 		actions.getPlanets();
 		actions.getVehicles();
 	  }, []);
 
-	let planets = [];
-	for (let i = 0; i < 10; i++){
-		planets.push(i);
-	}
-
-	let vehicles = [];
-	for (let i = 0; i < 10; i++){
-		vehicles.push(i);
-	}
-	
 	return(
 		<div>
 			<div className="container overflow-scroll">
@@ -68,7 +58,7 @@ export const Home = () => {
 								<h5 className="card-title">{vehicle.result.properties.name}</h5>
 								<p className="card-text">Passengers: {vehicle.result.properties.passengers}</p>
 								<p className="card-text">Vehicle class: {vehicle.result.properties.vehicle_class}</p>
-								<a href="#" className="btn btn-primary">Learn more!</a>
+								<a href="#" className="btn btn-primary" onClick={() => console.log("id: ", vehicle.result.uid)}>Learn more!</a>
 							</div>
 						</div>
 					))}
