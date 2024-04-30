@@ -38,10 +38,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 			getPeople: async () => {
-				fetch("https://www.swapi.tech/api/people", methods=["GET"])
-				.then(res => res.json())
-				.then(data => setStore({people: data}))
-				.catch(err => console.error(err))
+				const store = getStore();
+
+				for (let i = 1; i < 11; i++){ //capped at first 10 characters for the purpose of this excercise
+					let url = `https://www.swapi.tech/api/people/${i}`
+					fetch(url)
+					.then(res => res.json())
+					.then(data => {
+						setStore({...store, people: store.people.concat(data)})
+					})
+					.catch(err => console.error(err))
+				}
 			},
 			getPlanets: async () => {
 				fetch("https://www.swapi.tech/api/planets")

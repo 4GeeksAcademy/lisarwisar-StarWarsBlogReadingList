@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../../styles/home.css";
+
+import { Context } from "../store/appContext";
 
 export const Home = () => {
 
-	let characters = [];
-	for (let i = 0; i < 10; i++){
-		characters.push(i);
-	}
+	const { store, actions } = useContext(Context);
+
+	useEffect(() => {
+		actions.getPeople();
+		actions.getPlanets();
+		actions.getVehicles();
+	  }, []);
 
 	let planets = [];
 	for (let i = 0; i < 10; i++){
@@ -23,11 +28,11 @@ export const Home = () => {
 			<div className="container overflow-scroll">
 				<h2>Characters</h2>
 				<div className="row flex-nowrap">
-					{characters.map(character => (
+					{store.people.map(character => (
 						<div className="card col-4 mx-3">
 							<img src="..." className="card-img-top" alt="..."></img>
 							<div className="card-body">
-								<h5 className="card-title">Name {character}</h5>
+								<h5 className="card-title">Name: {character.result.properties.name}</h5>
 								<p className="card-text">Gender</p>
 								<p className="card-text">Hair-color</p>
 								<p className="card-text">Eye color</p>
