@@ -40,7 +40,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getPeople: async () => {
 				const store = getStore();
 
-				for (let i = 1; i < 11; i++){ //capped at first 10 characters for the purpose of this excercise
+				for (let i = 1; i < 11; i++){ //capped at first 10 items for the purpose of this excercise
 					let url = `https://www.swapi.tech/api/people/${i}`
 					fetch(url)
 					.then(res => res.json())
@@ -51,16 +51,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			getPlanets: async () => {
-				fetch("https://www.swapi.tech/api/planets")
-				.then(res => res.json())
-				.then(data => setStore({planets: data}))
-				.catch(err => console.error(err))
+				const store = getStore();
+
+				for (let i = 1; i < 11; i++){ //capped at first 10 items for the purpose of this excercise
+					let url = `https://www.swapi.tech/api/planets/${i}`
+					fetch(url)
+					.then(res => res.json())
+					.then(data => {setStore({...store, planets: store.planets.concat(data)})})
+					.catch(err => console.error(err))
+				}
 			},
 			getVehicles: async () => {
-				fetch("https://www.swapi.tech/api/vehicles")
+				const store = getStore();
+				let all_vehicles = []
+				await fetch("https://www.swapi.tech/api/vehicles")
 				.then(res => res.json())
-				.then(data => setStore({vehicles: data}))
+				.then(data => {all_vehicles = data?.results})
 				.catch(err => console.error(err))
+
+				for (let i = 0; i < 10; i++){ //capped at first 10 items for the purpose of this excercise
+					let url = `https://www.swapi.tech/api/vehicles/${all_vehicles[i].uid}`
+					fetch(url)
+					.then(res => res.json())
+					.then(data => {setStore({...store, vehicles: store.vehicles.concat(data)})})
+					.catch(err => console.error(err))
+				}
+				console.log("vehicles: ", store.vehicles)
 			}
 		}
 	};

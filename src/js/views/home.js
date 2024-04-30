@@ -32,10 +32,10 @@ export const Home = () => {
 						<div className="card col-4 mx-3">
 							<img src="..." className="card-img-top" alt="..."></img>
 							<div className="card-body">
-								<h5 className="card-title">Name: {character.result.properties.name}</h5>
-								<p className="card-text">Gender</p>
-								<p className="card-text">Hair-color</p>
-								<p className="card-text">Eye color</p>
+								<h5 className="card-title">{character.result.properties.name}</h5>
+								<p className="card-text">Gender: {character.result.properties.gender}</p>
+								<p className="card-text">Hair-color: {character.result.properties.hair_color}</p>
+								<p className="card-text">Eye color: {character.result.properties.eye_color}</p>
 								<a href="#" className="btn btn-primary">Learn more!</a>
 							</div>
 						</div>
@@ -45,14 +45,13 @@ export const Home = () => {
 			<div className="container overflow-scroll">
 				<h2>Planets</h2>
 				<div className="row flex-nowrap">
-					{planets.map(planet => (
+					{store.planets.map(planet => (
 						<div className="card col-4 mx-3">
 							<img src="..." className="card-img-top" alt="..."></img>
 							<div className="card-body">
-								<h5 className="card-title">Name {planet}</h5>
-								<p className="card-text">Gender</p>
-								<p className="card-text">Hair-color</p>
-								<p className="card-text">Eye color</p>
+								<h5 className="card-title">{planet.result.properties.name}</h5>
+								<p className="card-text">Population: {planet.result.properties.population}</p>
+								<p className="card-text">{planet.result.properties.terrain}</p>
 								<a href="#" className="btn btn-primary">Learn more!</a>
 							</div>
 						</div>
@@ -62,14 +61,13 @@ export const Home = () => {
 			<div className="container overflow-scroll">
 				<h2>Vehicles</h2>
 				<div className="row flex-nowrap">
-					{vehicles.map(vehicle => (
+					{store.vehicles.map(vehicle => (
 						<div className="card col-4 mx-3">
 							<img src="..." className="card-img-top" alt="..."></img>
 							<div className="card-body">
-								<h5 className="card-title">Name {vehicle}</h5>
-								<p className="card-text">Gender</p>
-								<p className="card-text">Hair-color</p>
-								<p className="card-text">Eye color</p>
+								<h5 className="card-title">{vehicle.result.properties.name}</h5>
+								<p className="card-text">Passengers: {vehicle.result.properties.passengers}</p>
+								<p className="card-text">Vehicle class: {vehicle.result.properties.vehicle_class}</p>
 								<a href="#" className="btn btn-primary">Learn more!</a>
 							</div>
 						</div>
