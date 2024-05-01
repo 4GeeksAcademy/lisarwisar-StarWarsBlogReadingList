@@ -15,7 +15,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			people: [],
 			planets: [],
-			vehicles: []
+			vehicles: [],
+			characterDisplay: [],
+			planetDisplay: [],
+			vehicleDisplay: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -50,6 +53,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(err => console.error(err))
 				}
 			},
+			getSingleCharacter: async (uid) => {
+				const store = getStore();
+				let url = `https://www.swapi.tech/api/people/${uid}`
+
+				fetch(url)
+				.then(res => res.json())
+				.then(data => {
+					setStore({...store, characterDisplay: store.characterDisplay.concat(data)})
+					console.log("store: ", store)
+				})
+				.catch(err => console.error(err))
+			},
+
 			getPlanets: async () => {
 				const store = getStore();
 
@@ -64,7 +80,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getVehicles: async () => {
 				const store = getStore();
 				let all_vehicles = []
-				await await fetch("https://www.swapi.tech/api/vehicles")
+				await fetch("https://www.swapi.tech/api/vehicles")
 				.then(res => res.json())
 				.then(data => {all_vehicles = data?.results})
 				.catch(err => console.error(err))

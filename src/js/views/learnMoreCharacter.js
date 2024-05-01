@@ -5,34 +5,19 @@ import { Context } from "../store/appContext";
 export const LearnMoreCharacter = () => {
 
     const { store, actions } = useContext(Context);
+    const params = useParams()
 
     useEffect(() => {
-        
-        GetCharacter()
-
+        actions.getSingleCharacter(params.id);
 	  }, []);
 
-    let params = useParams()
-    let characterID = []
-
-    async function GetCharacter () {
-        
-        await actions.getPeople();
-
-
-        for (let i = 0; i < store.people.length; i++){
-            if (store.people[i].result.uid == params.id){
-                characterID = i;
-                break;
-            }
-        }
-        return ("ok");
-    }
-
-
     return(
-        <div className="container">
-            hola!
+        <div>
+            {store.characterDisplay.map(character => (
+                <div>
+                    {character.result.properties.name}
+                </div>
+            ))}
         </div>
     )
 }
