@@ -77,6 +77,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(err => console.error(err))
 				}
 			},
+
+			getSinglePlanet: async (uid) => {
+				const store = getStore();
+				let url = `https://www.swapi.tech/api/planets/${uid}`
+
+				fetch(url)
+				.then(res => res.json())
+				.then(data => {
+					setStore({...store, planetDisplay: store.planetDisplay.concat(data)})
+					console.log("store: ", store)
+				})
+				.catch(err => console.error(err))
+			},
+
 			getVehicles: async () => {
 				const store = getStore();
 				let all_vehicles = []
@@ -92,7 +106,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {setStore({...store, vehicles: store.vehicles.concat(data)})})
 					.catch(err => console.error(err))
 				}
-			}
+			},
+
+			getSingleVehicle: async (uid) => {
+				const store = getStore();
+				let url = `https://www.swapi.tech/api/vehicles/${uid}`
+
+				fetch(url)
+				.then(res => res.json())
+				.then(data => {
+					setStore({...store, vehicleDisplay: store.vehicleDisplay.concat(data)})
+					console.log("store: ", store)
+				})
+				.catch(err => console.error(err))
+			},
 		}
 	};
 };

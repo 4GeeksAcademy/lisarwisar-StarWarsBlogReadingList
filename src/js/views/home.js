@@ -46,7 +46,7 @@ export const Home = () => {
 								<p className="card-text">Population: {planet.result.properties.population}</p>
 								<p className="card-text">{planet.result.properties.terrain}</p>
 								<a href="#" className="btn btn-primary" onClick={() =>{
-									navigate(`/planets/${character.result.uid}`);
+									navigate(`/planets/${planet.result.uid}`);
 									location.reload();
 								}}>Learn more!</a>
 							</div>
@@ -64,7 +64,7 @@ export const Home = () => {
 								<p className="card-text">Passengers: {vehicle.result.properties.passengers}</p>
 								<p className="card-text">Vehicle class: {vehicle.result.properties.vehicle_class}</p>
 								<a href="#" className="btn btn-primary" onClick={() => {
-									navigate(`/vehicles/${character.result.uid}`);
+									navigate(`/vehicles/${vehicle.result.uid}`);
 									location.reload();
 								}}>Learn more!</a>
 							</div>
