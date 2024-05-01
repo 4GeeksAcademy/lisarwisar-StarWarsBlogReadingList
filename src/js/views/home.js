@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/home.css";
+import { useNavigate } from "react-router";
 
 import { Context } from "../store/appContext";
 
 export const Home = () => {
 
 	const { store, actions } = useContext(Context);
+	const navigate = useNavigate()
 
 	useEffect(async () => {
 		actions.getPeople();
@@ -15,8 +17,8 @@ export const Home = () => {
 
 	return(
 		<div>
-			<div className="container overflow-scroll">
-				<h2>Characters</h2>
+			<div className="container-fluid overflow-scroll mx-5">
+				<h2 className="sectionTitle">Characters</h2>
 				<div className="row flex-nowrap">
 					{store.people.map(character => (
 						<div className="card col-4 mx-3">
@@ -26,14 +28,17 @@ export const Home = () => {
 								<p className="card-text">Gender: {character.result.properties.gender}</p>
 								<p className="card-text">Hair-color: {character.result.properties.hair_color}</p>
 								<p className="card-text">Eye color: {character.result.properties.eye_color}</p>
-								<a href="#" className="btn btn-primary">Learn more!</a>
+								<a href="#" className="btn btn-primary" onClick={() => {
+									navigate(`/characters/${character.result.uid}`);
+									location.reload();
+									}}>Learn more!</a>
 							</div>
 						</div>
 					))}
 				</div>
 			</div>
-			<div className="container overflow-scroll">
-				<h2>Planets</h2>
+			<div className="container-fluid overflow-scroll mx-5">
+				<h2 className="sectionTitle">Planets</h2>
 				<div className="row flex-nowrap">
 					{store.planets.map(planet => (
 						<div className="card col-4 mx-3">
@@ -48,8 +53,8 @@ export const Home = () => {
 					))}
 				</div>
 			</div>
-			<div className="container overflow-scroll">
-				<h2>Vehicles</h2>
+			<div className="container-fluid overflow-scroll mx-5">
+				<h2 className="sectionTitle">Vehicles</h2>
 				<div className="row flex-nowrap">
 					{store.vehicles.map(vehicle => (
 						<div className="card col-4 mx-3">
