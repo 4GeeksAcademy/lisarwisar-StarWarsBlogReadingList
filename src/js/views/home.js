@@ -22,7 +22,6 @@ export const Home = () => {
 				<div className="row flex-nowrap">
 					{store.people.map(character => (
 						<div className="card col-4 mx-3">
-							<img src="..." className="card-img-top" alt="..."></img>
 							<div className="card-body">
 								<h5 className="card-title">{character.result.properties.name}</h5>
 								<p className="card-text">Gender: {character.result.properties.gender}</p>
@@ -42,12 +41,14 @@ export const Home = () => {
 				<div className="row flex-nowrap">
 					{store.planets.map(planet => (
 						<div className="card col-4 mx-3">
-							<img src="..." className="card-img-top" alt="..."></img>
 							<div className="card-body">
 								<h5 className="card-title">{planet.result.properties.name}</h5>
 								<p className="card-text">Population: {planet.result.properties.population}</p>
 								<p className="card-text">{planet.result.properties.terrain}</p>
-								<a href="#" className="btn btn-primary">Learn more!</a>
+								<a href="#" className="btn btn-primary" onClick={() =>{
+									navigate(`/planets/${character.result.uid}`);
+									location.reload();
+								}}>Learn more!</a>
 							</div>
 						</div>
 					))}
@@ -58,12 +59,14 @@ export const Home = () => {
 				<div className="row flex-nowrap">
 					{store.vehicles.map(vehicle => (
 						<div className="card col-4 mx-3">
-							<img src="..." className="card-img-top" alt="..."></img>
 							<div className="card-body">
 								<h5 className="card-title">{vehicle.result.properties.name}</h5>
 								<p className="card-text">Passengers: {vehicle.result.properties.passengers}</p>
 								<p className="card-text">Vehicle class: {vehicle.result.properties.vehicle_class}</p>
-								<a href="#" className="btn btn-primary" onClick={() => console.log("id: ", vehicle.result.uid)}>Learn more!</a>
+								<a href="#" className="btn btn-primary" onClick={() => {
+									navigate(`/vehicles/${character.result.uid}`);
+									location.reload();
+								}}>Learn more!</a>
 							</div>
 						</div>
 					))}
