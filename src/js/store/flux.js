@@ -57,11 +57,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getSingleCharacter: async (uid) => {
 				const store = getStore();
 				let url = `https://www.swapi.tech/api/people/${uid}`
+				setStore({...store, characterDisplay: []})
+				let emptyArray = []
 
 				fetch(url)
 				.then(res => res.json())
 				.then(data => {
-					setStore({...store, characterDisplay: store.characterDisplay.concat(data)})
+					setStore({...store, characterDisplay: emptyArray.concat(data)})
 					console.log("store: ", store)
 				})
 				.catch(err => console.error(err))
@@ -82,11 +84,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getSinglePlanet: async (uid) => {
 				const store = getStore();
 				let url = `https://www.swapi.tech/api/planets/${uid}`
+				setStore({...store, planetDisplay: []})
+				let emptyArray = []
 
 				fetch(url)
 				.then(res => res.json())
 				.then(data => {
-					setStore({...store, planetDisplay: store.planetDisplay.concat(data)})
+					setStore({...store, planetDisplay: emptyArray.concat(data)})
 					console.log("store: ", store)
 				})
 				.catch(err => console.error(err))
@@ -112,11 +116,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getSingleVehicle: async (uid) => {
 				const store = getStore();
 				let url = `https://www.swapi.tech/api/vehicles/${uid}`
+				setStore({...store, vehicleDisplay: []})
+				let emptyArray = []
 
 				fetch(url)
 				.then(res => res.json())
 				.then(data => {
-					setStore({...store, vehicleDisplay: store.vehicleDisplay.concat(data)})
+					setStore({...store, vehicleDisplay: emptyArray.concat(data)})
 					console.log("store: ", store)
 				})
 				.catch(err => console.error(err))

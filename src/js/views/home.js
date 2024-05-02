@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { Context } from "../store/appContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
 
@@ -30,10 +31,9 @@ export const Home = () => {
 								<p className="card-text">Eye color: {character.result.properties.eye_color}</p>
 							</div>
 							<div className="card-body d-flex justify-content-between align-items-end mb-2">
-								<button className="btn btn-outline-primary" onClick={() => {
-									navigate(`/characters/${character.result.uid}`);
-									location.reload();
-								}}>Learn more!</button>
+								<button className="btn btn-outline-primary">
+									<Link to={`/characters/` + character.result.uid} style={{ textDecoration: 'none' }}>Learn more!</Link>
+								</button>
 								<button className="btn btn-outline-warning" onClick={() => actions.addFavorite(character.result.properties.name)}>
 									<FontAwesomeIcon icon={faHeart} />
 								</button>
@@ -53,11 +53,10 @@ export const Home = () => {
 								<p className="card-text">{planet.result.properties.terrain}</p>
 							</div>
 							<div className="card-body d-flex justify-content-between align-items-end mb-2">
-								<button className="btn btn-outline-primary" onClick={() =>{
-									navigate(`/planets/${planet.result.uid}`);
-									location.reload();
-								}}>Learn more!</button>
-								<button className="btn btn-outline-warning">
+								<button className="btn btn-outline-primary">
+									<Link to={`/planets/` + planet.result.uid} style={{ textDecoration: 'none' }}>Learn more!</Link>
+								</button>
+								<button className="btn btn-outline-warning" onClick={() => actions.addFavorite(planet.result.properties.name)}>
 									<FontAwesomeIcon icon={faHeart} />
 								</button>
 							</div>
@@ -76,11 +75,10 @@ export const Home = () => {
 								<p className="card-text">Vehicle class: {vehicle.result.properties.vehicle_class}</p>
 							</div>
 							<div className="card-body d-flex justify-content-between align-items-end mb-2">
-								<button href="#" className="btn btn-outline-primary" onClick={() => {
-									navigate(`/vehicles/${vehicle.result.uid}`);
-									location.reload();
-								}}>Learn more!</button>
-								<button className="btn btn-outline-warning ml-5">
+								<button className="btn btn-outline-primary">
+									<Link to={`/vehicles/` + vehicle.result.uid} style={{ textDecoration: 'none' }}>Learn more!</Link>
+								</button>
+								<button className="btn btn-outline-warning" onClick={() => actions.addFavorite(vehicle.result.properties.name)}>
 									<FontAwesomeIcon icon={faHeart} />
 								</button>
 							</div>
