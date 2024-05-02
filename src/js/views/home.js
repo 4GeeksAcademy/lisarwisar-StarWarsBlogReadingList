@@ -10,7 +10,7 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const navigate = useNavigate()
 
-	useEffect(async () => {
+	useEffect(() => {
 		actions.getPeople();
 		actions.getPlanets();
 		actions.getVehicles();
@@ -34,7 +34,7 @@ export const Home = () => {
 									navigate(`/characters/${character.result.uid}`);
 									location.reload();
 								}}>Learn more!</button>
-								<button className="btn btn-outline-warning">
+								<button className="btn btn-outline-warning" onClick={() => actions.addFavorite(character.result.properties.name)}>
 									<FontAwesomeIcon icon={faHeart} />
 								</button>
 							</div>
