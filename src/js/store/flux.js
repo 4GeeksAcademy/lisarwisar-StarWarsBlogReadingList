@@ -124,9 +124,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addFavorite: (name) => {
 				const store = getStore();
-				console.log("name", name);
-				setStore({...store, favorites: store.favorites.concat(name)});
-				console.log("store: ", store)
+				if (store.favorites.includes(name) != true){
+					setStore({...store, favorites: store.favorites.concat(name)});
+				}
+			},
+			
+			deleteFavorite: (position) => {
+				const store = getStore();
+				var removed = store.favorites.splice(position, 1);
+				setStore({...store, favorites: store.favorites});
 			}
 		}
 	};

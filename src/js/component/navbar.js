@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import starwarsLogo from "../images/starwars_logo.png"
 import "../../styles/navbar.css";
 
@@ -21,7 +23,14 @@ export const Navbar = () => {
 				</button>
 				<ul className="dropdown-menu px-2">
 					{store.favorites.map(item => (
-						<li>{item}</li>
+						<li>
+							{item}
+							<button className="deleteFavoriteButton ml-2" onClick={() =>{
+								actions.deleteFavorite(store.favorites.indexOf(item));
+							}}>
+								<FontAwesomeIcon icon={faTrash} />
+							</button>
+						</li>
 					))}
 				</ul>
 			</div>

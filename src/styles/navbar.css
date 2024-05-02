@@ -13,3 +13,8 @@
 .favoritesButton {
     margin-right: 70px;
 }
+
+.deleteFavoriteButton {
+    border: none;
+    background: white;
+}
