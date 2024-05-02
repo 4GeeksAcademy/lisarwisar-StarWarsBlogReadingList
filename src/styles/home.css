@@ -1,0 +1,10 @@
+.card {
+    height: 300px;
+    width: 300px;
+}
+
+.sectionTitle {
+    color: red;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
