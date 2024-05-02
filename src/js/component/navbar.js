@@ -5,7 +5,7 @@ import starwarsLogo from "../images/starwars_logo.png"
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	
 	return (
 		<nav className="navbar navbar-light bg-light mb-3">
